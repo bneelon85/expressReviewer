@@ -1,0 +1,9 @@
+{% extends "base.html" %} 
+{% block content %}
+<div class="ui middle aligned center aligned stackable grid container">
+{% for restaurant in restaurants %}
+            <h3><a href="restaurant/{{ restaurant.id }}">{{ restaurant.name }}</a></h3>
+            <p>{{ restaurant.address }}</p>
+        {% endfor %}
+</div>
+{% endblock %}

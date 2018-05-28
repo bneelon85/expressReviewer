@@ -1,0 +1,10 @@
+{% extends "base.html" %} {% block content %}
+<div class="ui middle aligned center aligned stackable grid container">
+    <form action="search" method="GET">
+        <div class="ui action massive icon input">
+            <input style="width:25em;" type="text" name="searchTerm" placeholder="Search...">
+            <i class="circular search link icon" type="submit"></i>
+        </div>
+    </form>
+</div>
+{% endblock %}
