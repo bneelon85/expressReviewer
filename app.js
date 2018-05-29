@@ -36,6 +36,20 @@ app.get('/search', function(request, response, next){
     });
 });
 
+app.get('/restaurant/:id', function(request, response, next){
+    var restID = request.params.id;
+    db.any('SELECT * FROM restaurant WHERE id = $1', [restID])
+    .then(function(results) {
+        console.log(results);
+        var result = results[0];
+        response.render('restaurant.html', {restaurant: result});
+    })
+    .catch(function(error) {
+        console.error("SEARCH ERROR: ", error);
+        next(error);
+    });
+});
+
 
 app.listen(8000, function () {
     console.log('Listening on port 8000');
