@@ -16,6 +16,18 @@ nunjucks.configure('views', {
   noCache: true
 });
 
+function capital_letter(str) 
+{
+    str = str.split(" ");
+
+    for (var i = 0, x = str.length; i < x; i++) {
+        str[i] = str[i][0].toUpperCase() + str[i].substr(1);
+    }
+
+    return str.join(" ");
+}
+
+
 
 app.get('/', function(request, response){
     var context = {title: 'Home Page'};
@@ -42,7 +54,8 @@ app.get('/restaurant/:id', function(request, response, next){
     .then(function(results) {
         console.log(results);
         var result = results[0];
-        response.render('restaurant.html', {restaurant: result});
+        var category = capital_letter(results[0].category);
+        response.render('restaurant.html', {restaurant: result, category:category});
     })
     .catch(function(error) {
         console.error("SEARCH ERROR: ", error);
