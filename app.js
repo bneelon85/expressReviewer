@@ -47,6 +47,11 @@ app.get('/search', function(request, response, next) {
         });
 });
 
+app.get('/restaurant/new', function(request, response) {
+    var context = { title: 'Add New Restaurant' };
+    response.render('restaurantForm.html', context);
+});
+
 app.get('/restaurant/:id', function(request, response, next) {
     var restID = request.params.id;
     //fetchReviews(restID)
@@ -81,6 +86,21 @@ app.post('/reviews', function(request, response) {
     //console.log(result);
     });
    response.redirect('/restaurant/'+id);
+});
+
+
+
+app.post('/ristorante', function(request, response) {
+  var name = request.body.name;
+  var address = request.body.address;
+  var category = request.body.category;
+  var q = "INSERT INTO restaurant VALUES (default,$1,$2,$3)"
+  //console.log(typeof(input));
+  db.result(q, [name, address, category])
+  .then(function(result) {
+    //console.log(result);
+    });
+   response.redirect('/');
 });
 
 

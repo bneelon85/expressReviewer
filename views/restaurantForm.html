@@ -1,0 +1,27 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="ui center aligned grid">
+  <div class="one column row" style="margin-top: 1%">
+    <h1>Create a Restaurant</h1>
+    </div>
+    <div class="one column row" style="margin-top: 1%">
+<form class="ui form" action="/ristorante" method="POST">
+    <label>Name</label>
+    <input name="name" type="text">
+    <label>Address</label>
+    <input name="address" type="text">
+    <label>Category</label>
+    <select class="ui fluid search dropdown"  name="category">
+      <option value="pizza">pizza</option>
+      <option value="fine dining">fine dining</option>
+      <option value="american">american</option>
+      <option value="chinese">chinese</option>
+      <option value="sushi">sushi</option>
+    </select>
+    <input class="ui button" type="submit" value="Send">
+</form>
+      
+    
+  </div>
+</div>
+{% endblock %}
