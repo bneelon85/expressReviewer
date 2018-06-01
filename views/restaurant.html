@@ -1,12 +1,48 @@
 {% extends "base.html" %} {% block content %}
 
-  <div class="ui inverted vertical masthead center aligned segment">
-    <div class="ui text container">
-      <h1 class="ui inverted header">
-        {{ restaurant.name }}
-      </h1>
-      <h3><u>Address</u>: {{restaurant.address}}</h3>
-      <h3><u>Category</u>: {{category}}</h3>
+<div class="ui inverted vertical masthead center aligned segment">
+  <div class="ui text container">
+    <h1 class="ui inverted header">
+      {{ restaurant.r_name }}
+    </h1>
+    <h3><u>Address</u>: {{restaurant.r_address}}</h3>
+    <h3><u>Category</u>: {{category}}</h3>
+  </div>
+</div>
+<div class="ui center aligned grid">
+  {% for rest in restaurants %}
+  <div class="one column row" style="margin-top: 1%">
+    <div class="column">
+      <h1>{{rest.rev_title}}</h1>
+      <h3>User: {{rest.person_name}}</h3>
+      <h4>Stars: {{rest.rev_stars}}</h4>
+      <p>"{{rest.rev_review}}"</p>
     </div>
-    </div>
-    {% endblock %}
+  </div>
+  {% endfor %}
+  <div class="one column row" style="margin-top: 1%">
+    <h1>Enter Your Own Reviews Below!</h1>
+  </div>
+  <div class="one column row" style="margin-top: 1%">
+    
+<form class="ui form" action="/reviews" method="POST">
+    <input type="hidden" name="restaurantId" value="{{restaurant.r_id}}" />
+    <label>Title</label>
+    <input name="title" type="text">
+    <label>Review</label>
+    <textarea type="text" name="review"></textarea>
+    <label>Stars</label>
+    <select class="ui fluid search dropdown"  name="stars">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+    <input class="ui button" type="submit" value="Send">
+</form>
+      
+    
+  </div>
+</div>
+{% endblock %}
